@@ -442,7 +442,7 @@ $ az acr network-rule add -n $n --ip-address $myip/32
   "anonymousPullEnabled": false,
   "creationDate": "2022-05-03T07:33:41.932297+00:00",
   "dataEndpointEnabled": false,
-  "dataEndpointHostNames": [],
+  "dataEndpointHostNames": [[]],
   "encryption": {
     "keyVaultProperties": null,
     "status": "disabled"
@@ -455,13 +455,13 @@ $ az acr network-rule add -n $n --ip-address $myip/32
   "networkRuleBypassOptions": "AzureServices",
   "networkRuleSet": {
     "defaultAction": "Allow",
-    "ipRules": [
+    "ipRules": [[
       {
         "action": "Allow",
         "ipAddressOrRange": "***.***.***.***"
       }
-    ],
-    "virtualNetworkRules": []
+    ]],
+    "virtualNetworkRules": [[]]
   },
   "policies": {
     "exportPolicy": {
@@ -480,7 +480,7 @@ $ az acr network-rule add -n $n --ip-address $myip/32
       "type": "Notary"
     }
   },
-  "privateEndpointConnections": [],
+  "privateEndpointConnections": [[]],
   "provisioningState": "Succeeded",
   "publicNetworkAccess": "Disabled",
   "resourceGroup": "fer-globalazure-2022",
@@ -661,7 +661,7 @@ $ az network private-endpoint create --name ${n}ACRPrivateEndpoint --resource-gr
 }
 
 # get acr NIC
-$ acrNIC=$(az network private-endpoint show --name fergab22ACRPrivateEndpoint --resource-group $rg --query networkInterfaces[[0]].id --output tsv)
+$ acrNIC=$(az network private-endpoint show --name ${n}ACRPrivateEndpoint --resource-group $rg --query networkInterfaces[[0]].id --output tsv)
 @sleep 1500
 
 # show acr NIC
@@ -1044,27 +1044,27 @@ $ az keyvault network-rule add --name $n --ip-address $myip/32
   "location": "westeurope",
   "name": "fergab22",
   "properties": {
-    "accessPolicies": [
+    "accessPolicies": [[
       {
         "applicationId": null,
         "objectId": "********-****-****-****-*********2da",
         "permissions": {
-          "certificates": [
+          "certificates": [[
             "all"
-          ],
-          "keys": [
+          ]],
+          "keys": [[
             "all"
-          ],
-          "secrets": [
+          ]],
+          "secrets": [[
             "all"
-          ],
-          "storage": [
+          ]],
+          "storage": [[
             "all"
-          ]
+          ]]
         },
         "tenantId": "********-****-****-****-*********35d"
       }
-    ],
+    ]],
     "createMode": null,
     "enablePurgeProtection": null,
     "enableRbacAuthorization": null,
@@ -1076,12 +1076,12 @@ $ az keyvault network-rule add --name $n --ip-address $myip/32
     "networkAcls": {
       "bypass": "AzureServices",
       "defaultAction": "Deny",
-      "ipRules": [
+      "ipRules": [[
         {
           "value": "***.***.***.***/32"
         }
-      ],
-      "virtualNetworkRules": []
+      ]],
+      "virtualNetworkRules": [[]]
     },
     "privateEndpointConnections": null,
     "provisioningState": "Succeeded",
@@ -1282,7 +1282,7 @@ $ az network private-endpoint create --name ${n}VaultPrivateEndpoint --resource-
 }
 
 # get vault NIC
-$ vaultNIC=$(az network private-endpoint show --name fergab22VaultPrivateEndpoint --resource-group $rg --query networkInterfaces[[0]].id --output tsv)
+$ vaultNIC=$(az network private-endpoint show --name ${n}VaultPrivateEndpoint --resource-group $rg --query networkInterfaces[[0]].id --output tsv)
 @sleep 1000
 
 # show vault NIC
@@ -1509,23 +1509,23 @@ $ az keyvault set-policy --name $n --object-id $aks_object_id --secret-permissio
   "location": "westeurope",
   "name": "fergab22",
   "properties": {
-    "accessPolicies": [
+    "accessPolicies": [[
       {
         "applicationId": null,
         "objectId": "********-****-****-****-*********2da",
         "permissions": {
-          "certificates": [
+          "certificates": [[
             "all"
-          ],
-          "keys": [
+          ]],
+          "keys": [[
             "all"
-          ],
-          "secrets": [
+          ]],
+          "secrets": [[
             "all"
-          ],
-          "storage": [
+          ]],
+          "storage": [[
             "all"
-          ]
+          ]]
         },
         "tenantId": "********-****-****-****-*********35d"
       },
@@ -1533,23 +1533,23 @@ $ az keyvault set-policy --name $n --object-id $aks_object_id --secret-permissio
         "applicationId": null,
         "objectId": "********-****-****-****-*********f8b",
         "permissions": {
-          "certificates": [
+          "certificates": [[
             "list",
             "get"
-          ],
-          "keys": [
+          ]],
+          "keys": [[
             "list",
             "get"
-          ],
-          "secrets": [
+          ]],
+          "secrets": [[
             "list",
             "get"
-          ],
+          ]],
           "storage": null
         },
         "tenantId": "********-****-****-****-*********35d"
       }
-    ],
+    ]],
     "createMode": null,
     "enablePurgeProtection": null,
     "enableRbacAuthorization": null,
@@ -1561,14 +1561,14 @@ $ az keyvault set-policy --name $n --object-id $aks_object_id --secret-permissio
     "networkAcls": {
       "bypass": "AzureServices",
       "defaultAction": "Deny",
-      "ipRules": [
+      "ipRules": [[
         {
           "value": "***.***.***.***/32"
         }
-      ],
-      "virtualNetworkRules": []
+      ]],
+      "virtualNetworkRules": [[]]
     },
-    "privateEndpointConnections": [
+    "privateEndpointConnections": [[
       {
         "etag": null,
         "id": "/subscriptions/********-****-****-****-*********16e/resourceGroups/fer-globalazure-2022/providers/Microsoft.KeyVault/vaults/fergab22/privateEndpointConnections/fergab22VaultConnection",
@@ -1584,7 +1584,7 @@ $ az keyvault set-policy --name $n --object-id $aks_object_id --secret-permissio
         "provisioningState": "Succeeded",
         "resourceGroup": "fer-globalazure-2022"
       }
-    ],
+    ]],
     "provisioningState": "Succeeded",
     "publicNetworkAccess": "Enabled",
     "sku": {
@@ -1783,7 +1783,7 @@ Step 6/8 : WORKDIR /app
  ---> ee420d22b4d7
 Step 7/8 : COPY --from=build /app ./
  ---> da726317cc65
-Step 8/8 : ENTRYPOINT ["dotnet", "MyApi.dll"]
+Step 8/8 : ENTRYPOINT [["dotnet", "MyApi.dll"]]
  ---> Running in 5dd5198238af
 @sleep 100
 Removing intermediate container 5dd5198238af
@@ -1795,7 +1795,7 @@ Successfully tagged fergab22.azurecr.io/myapi:1.0
 
 # push new image to acr
 $ docker push fergab22.azurecr.io/myapi:1.0
-The push refers to repository [fergab22.azurecr.io/myapi]
+The push refers to repository [[fergab22.azurecr.io/myapi]]
 @sleep 2000
 118580463678: Pushed
 @sleep 100
