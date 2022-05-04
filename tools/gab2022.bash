@@ -661,7 +661,7 @@ $ az network private-endpoint create --name ${n}ACRPrivateEndpoint --resource-gr
 }
 
 # get acr NIC
-$ acrNIC=$(az network private-endpoint show --name ${n}ACRPrivateEndpoint --resource-group $rg --query networkInterfaces[[0]].id --output tsv)
+$ acrNIC=$(az network private-endpoint show --name ${n}ACRPrivateEndpoint --resource-group $rg --query networkInterfaces[0].id --output tsv)
 @sleep 1500
 
 # show acr NIC
@@ -669,7 +669,7 @@ $ echo $acrNIC
 /subscriptions/********-****-****-****-*********16e/resourceGroups/fer-globalazure-2022/providers/Microsoft.Network/networkInterfaces/fergab22ACRPrivateEndpoint.nic.********-****-****-****-*********0b5
 
 # get acr private ip
-$ acrIP1=$(az resource show --ids $acrNIC --api-version 2019-04-01 --query properties.ipConfigurations[[1]].properties.privateIPAddress --output tsv)
+$ acrIP1=$(az resource show --ids $acrNIC --api-version 2019-04-01 --query properties.ipConfigurations[1].properties.privateIPAddress --output tsv)
 @sleep 1000
 
 # show acr private ip
@@ -677,7 +677,7 @@ $ echo $acrIP1
 10.1.0.5
 
 # get acr the other private ip
-$ acrIP2=$(az resource show --ids $acrNIC --api-version 2019-04-01 --query properties.ipConfigurations[[0]].properties.privateIPAddress --output tsv)
+$ acrIP2=$(az resource show --ids $acrNIC --api-version 2019-04-01 --query properties.ipConfigurations[0].properties.privateIPAddress --output tsv)
 
 # show the other acr private ip
 $ echo $acrIP2
@@ -1282,7 +1282,7 @@ $ az network private-endpoint create --name ${n}VaultPrivateEndpoint --resource-
 }
 
 # get vault NIC
-$ vaultNIC=$(az network private-endpoint show --name ${n}VaultPrivateEndpoint --resource-group $rg --query networkInterfaces[[0]].id --output tsv)
+$ vaultNIC=$(az network private-endpoint show --name ${n}VaultPrivateEndpoint --resource-group $rg --query networkInterfaces[0].id --output tsv)
 @sleep 1000
 
 # show vault NIC
@@ -1290,7 +1290,7 @@ $ echo $vaultNIC
 /subscriptions/********-****-****-****-*********16e/resourceGroups/fer-globalazure-2022/providers/Microsoft.Network/networkInterfaces/fergab22VaultPrivateEndpoint.nic.********-****-****-****-*********851
 
 # get vault private ip
-$ vaultIP=$(az resource show --ids $vaultNIC --api-version 2019-04-01 --query properties.ipConfigurations[[0]].properties.privateIPAddress --output tsv)
+$ vaultIP=$(az resource show --ids $vaultNIC --api-version 2019-04-01 --query properties.ipConfigurations[0].properties.privateIPAddress --output tsv)
 @sleep 1000
 
 # show vault private ip

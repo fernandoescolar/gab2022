@@ -4,9 +4,9 @@ namespace PresentationWeb.Hubs;
 
 public class PresentationHub : Hub
 {
-    private const int TotalSlides = 75;
+    private const int TotalSlides = 76;
 
-    private static readonly int[] HiddenSlides = new[] { 10, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 45, 47, 49, 71 };
+    private static readonly int[] HiddenSlides = new[] { 10, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 38, 40, 42, 44, 45, 47, 49, 51, 72 };
 
     private static int CurrentIndex = 1;
 

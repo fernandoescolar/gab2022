@@ -4,6 +4,7 @@ var connection = new signalR.HubConnectionBuilder().withUrl("/presentationHub").
 
 document.getElementById("next").disabled = true;
 document.getElementById("prev").disabled = true;
+document.getElementById("reset").disabled = true;
 
 var hidden = [];
 var currentIndex = 0;
@@ -44,6 +45,7 @@ connection.on("RefreshSlide", function (data) {
 connection.start().then(function () {
     document.getElementById("next").disabled = false;
     document.getElementById("prev").disabled = false;
+    document.getElementById("reset").disabled = false;
 }).catch(function (err) {
     return console.error(err.toString());
 });
@@ -57,6 +59,13 @@ document.getElementById("next").addEventListener("click", function (event) {
 
 document.getElementById("prev").addEventListener("click", function (event) {
     connection.invoke("SetSlide", currentIndex - 1).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});
+
+document.getElementById("reset").addEventListener("click", function (event) {
+    connection.invoke("SetSlide", 1).catch(function (err) {
         return console.error(err.toString());
     });
     event.preventDefault();
