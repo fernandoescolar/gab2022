@@ -61,3 +61,11 @@ document.getElementById("prev").addEventListener("click", function (event) {
     });
     event.preventDefault();
 });
+
+document.getElementById("presentation").addEventListener("click", function (event) {
+    const nextIndex = event.clientX < window.innerWidth / 2 ? currentIndex - 1 : currentIndex + 1;
+    connection.invoke("SetSlide", nextIndex).catch(function (err) {
+        return console.error(err.toString());
+    });
+    event.preventDefault();
+});

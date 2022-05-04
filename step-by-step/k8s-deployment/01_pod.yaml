@@ -1,0 +1,10 @@
+kind: Pod
+apiVersion: v1
+metadata:
+  name: my-api
+spec:
+  containers:
+    - name: my-api
+      image: fergab22.azurecr.io/myapi:0.1
+      ports:
+        - containerPort: 80

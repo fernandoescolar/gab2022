@@ -1,0 +1,49 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: my-app-config
+data:
+  appsettings.json: |-
+    {
+      "Logging": {
+        "LogLevel": {
+          "Default": "Information",
+          "Microsoft": "Warning",
+          "Microsoft.Hosting.Lifetime": "Information"
+        }
+      },
+      "AllowedHosts": "*",
+      "Message": "Hello world!"
+    }
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-api
+spec:
+  selector:
+    matchLabels:
+      app: my-api
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: my-api
+    spec:
+      containers:
+      - name: my-api
+        image: fergab22.azurecr.io/myapi:0.1
+        ports:
+          - containerPort: 80
+        volumeMounts:
+        - name: appsettings-volume
+          mountPath: /app/config
+      volumes:
+      - name: appsettings-volume
+        configMap:
+          name: my-app-config
+
+# builder.Configuration
+#        .AddJsonFile("config/appsettings.json",
+#                     optional: true,
+#                     reloadOnChange: true);
